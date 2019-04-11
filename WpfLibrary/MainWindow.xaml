@@ -1,0 +1,33 @@
+﻿<Window x:Class="WpfLibrary.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfLibrary"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel>
+        
+            <Label>Id</Label>
+        <TextBox Name="tb_id"></TextBox>
+            <Label>Title</Label>
+            <TextBox Name="tb_title"></TextBox>
+            <Label>Author</Label>
+            <TextBox Name="tb_author"></TextBox>
+            <Label>Pages</Label>
+            <TextBox Name="tb_pages"></TextBox>
+        <Button Name="btn_Add" Grid.Column="0" Click="Btn_Add_Click">Add</Button>
+            <Button Name="btn_data" Click="Btn_data_Click" >Show</Button>
+        </StackPanel>
+        <ListBox Name="lb_data" Grid.Column="1">
+            
+        </ListBox>        
+
+    </Grid>
+</Window>

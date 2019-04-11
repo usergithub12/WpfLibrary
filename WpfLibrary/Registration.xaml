@@ -1,0 +1,42 @@
+﻿<Window x:Class="WpfLibrary.Registration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfLibrary"
+        mc:Ignorable="d"
+        Title="Registration" Height="302.521" Width="564.286">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="0.1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <Label>Login</Label>
+            <TextBox Name="tb_login"></TextBox>
+            <Label>Password</Label>
+            <TextBox Name="tb_password"></TextBox>
+            <Label>Password Confirmation</Label>
+            <TextBox Name="tb_conf_password"></TextBox>
+            <Label>Email</Label>
+            <TextBox Name="tb_email" ></TextBox>
+            <Label>Telephone</Label>
+            <TextBox Name="tb_telephone"></TextBox>
+        </StackPanel>
+      
+
+        <StackPanel Grid.Column="1">
+            <CheckBox Margin="16" Name="cb_login"></CheckBox>
+            <CheckBox Margin="16" Name="cb_password"></CheckBox>
+            <CheckBox Margin="16" Name="cb_conf_password"></CheckBox>
+            <CheckBox Margin="16" Name="cb_email"></CheckBox>
+            <CheckBox Margin="16" Name="cb_telephone"></CheckBox>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Bottom">
+            
+       
+        <Button Grid.Column="0" Grid.ColumnSpan="1" Name="btn_confirm" Click="Btn_confirm_Click">Confirm</Button>
+        <Button Grid.Column="0" Grid.ColumnSpan="1" Name="btn_reset" Click="Btn_reset_Click">Reset</Button>
+        </StackPanel>
+    </Grid>
+</Window>
