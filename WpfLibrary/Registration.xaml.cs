@@ -27,7 +27,7 @@ namespace WpfLibrary
         private void Btn_confirm_Click(object sender, RoutedEventArgs e)
         {
             User user = new User();
-
+            
             try
             {
                 if (tb_password.Text == tb_conf_password.Text)
