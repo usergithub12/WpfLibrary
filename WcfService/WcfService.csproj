@@ -74,7 +74,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Book.cs" />
+    <Compile Include="Exceptions\EmailFormatException.cs" />
+    <Compile Include="Exceptions\EmptyCyrilicLoginException.cs" />
+    <Compile Include="Exceptions\PasswordConfirmationException.cs" />
     <Compile Include="Exceptions\PasswordEqualsInDataBaseException.cs" />
+    <Compile Include="Exceptions\PasswordIndexOutOfRangeException.cs" />
+    <Compile Include="Exceptions\PasswordSpecificCharactersException.cs" />
+    <Compile Include="Exceptions\PhoneFormatException.cs" />
     <Compile Include="LibraryBooks.cs" />
     <Compile Include="Models\LoginUser.cs" />
     <Compile Include="Models\User.cs" />

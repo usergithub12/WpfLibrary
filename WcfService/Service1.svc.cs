@@ -90,63 +90,150 @@ namespace WcfService
         public void GetUserforValidation(User user)
         {
 
-            
-          
-                if (user.Login != String.Empty&&user.Login!=null&&!Regex.IsMatch(user.Login, @"\p{IsCyrillic}"))
-                {
-                   throw new NullReferenceException();
-                }
-          
-        
+            try
+            {
 
-           
-                if (user.Password==user.PasswordConfirmation)
+                if (user.Login != String.Empty && user.Login != null && !Regex.IsMatch(user.Login, @"\p{IsCyrillic}"))
                 {
-                throw new FaultException();
+                    throw new EmptyCyrilicLoginException();
+                }
+
+                
             }
-           
-            //catch (Exception err)
-            //{
-            //    MyWcfSuperPuperException ex = new MyWcfSuperPuperException();
-            //    ex.Result = false;
-            //    ex.Message = err.Message;
-            //    ex.Description = "Htos' naplyguv, ajajaj ((((";
+            catch (EmptyCyrilicLoginException err)
+            {
+                MyExceptionFault ex = new MyExceptionFault();
+                ex.Result = false;
+                ex.Message = err.Message;
+                ex.Description = "Htos' naplyguv, ajajaj ((((";
 
-            //    throw new FaultException<MyWcfSuperPuperException>(ex, new FaultReason(" bebebe"));
-            //}
-
+                throw new FaultException<MyExceptionFault>(ex, new FaultReason(" bebebe"));
+            }
 
 
-            
-                if (user.Password.Length>=6)
+
+            try
+            {
+
+                if (user.Password == user.PasswordConfirmation)
                 {
-                throw new IndexOutOfRangeException();
+                    throw new PasswordConfirmationException();
                 }
-           
-           
 
-           
+
+            }
+            catch (PasswordConfirmationException err)
+            {
+                MyExceptionFault ex = new MyExceptionFault();
+                ex.Result = false;
+                ex.Message = err.Message;
+                ex.Description = "Htos' naplyguv, ajajaj ((((";
+
+                throw new FaultException<MyExceptionFault>(ex, new FaultReason(" bebebe"));
+            }
+
+
+
+
+
+
+
+      
+
+            try
+            {
+
+                if (user.Password.Length >= 6)
+                {
+                    throw new PasswordIndexOutOfRangeException();
+                }
+
+            }
+            catch (PasswordIndexOutOfRangeException err)
+            {
+                MyExceptionFault ex = new MyExceptionFault();
+                ex.Result = false;
+                ex.Message = err.Message;
+                ex.Description = "Htos' naplyguv, ajajaj ((((";
+
+                throw new FaultException<MyExceptionFault>(ex, new FaultReason(" bebebe"));
+            }
+
+
+
+
+
+
+
+          
+
+            try
+            {
+
                 if (Regex.IsMatch(user.Password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"))
                 {
-                throw new FaultException();
+                    throw new PasswordSpecificCharactersException();
                 }
 
-
-
-
-            if (user.Email != null)
+            }
+            catch (PasswordSpecificCharactersException err)
             {
-                MailAddress m = new MailAddress(user.Email);
-                throw new FormatException();
+                MyExceptionFault ex = new MyExceptionFault();
+                ex.Result = false;
+                ex.Message = err.Message;
+                ex.Description = "Htos' naplyguv, ajajaj ((((";
+
+                throw new FaultException<MyExceptionFault>(ex, new FaultReason(" bebebe"));
+            }
+
+
+        
+
+            try
+            {
+
+                if (user.Email != null)
+                {
+                    MailAddress m = new MailAddress(user.Email);
+                    throw new EmailFormatException();
+                }
+
+            }
+            catch (EmailFormatException err)
+            {
+                MyExceptionFault ex = new MyExceptionFault();
+                ex.Result = false;
+                ex.Message = err.Message;
+                ex.Description = "Htos' naplyguv, ajajaj ((((";
+
+                throw new FaultException<MyExceptionFault>(ex, new FaultReason(" bebebe"));
             }
 
 
 
-            if (string.IsNullOrEmpty(user.Telephone))
+
+           
+
+
+            try
             {
-                var r = new Regex(@"^\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$");
-                r.IsMatch(user.Telephone);
-                throw new FaultException();
+
+                if (string.IsNullOrEmpty(user.Telephone))
+                {
+                    var r = new Regex(@"^\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$");
+                    r.IsMatch(user.Telephone);
+                    throw new PhoneFormatException();
+                }
+
+            }
+            catch (PhoneFormatException err)
+            {
+                MyExceptionFault ex = new MyExceptionFault();
+                ex.Result = false;
+                ex.Message = err.Message;
+                ex.Description = "Htos' naplyguv, ajajaj ((((";
+
+                throw new FaultException<MyExceptionFault>(ex, new FaultReason(" bebebe"));
             }
         }
     }

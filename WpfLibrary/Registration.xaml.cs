@@ -30,36 +30,7 @@ namespace WpfLibrary
         {
 
             User user = new User();
-            //try
-            //{
-            //    if (tb_password.Text == tb_conf_password.Text)
-            //    {
-            //    }
-            //}
-            //catch (Exception)
-            //{
-            //    throw;
-            //}
-            //try
-            //{
-            //    if (tb_login.Text == String.Empty)
-            //    {
-            //    }
-            //}
-            //catch (Exception)
-            //{
-            //    throw;
-            //}
-            //try
-            //{
-            //    if (tb_password.Text.Count()>=6)
-            //    {
-            //    }
-            //}
-            //catch (Exception)
-            //{
-            //    throw;
-            //}
+      
 
             user.Telephone = tb_telephone.Text;
             user.Password =  tb_password.Text;
