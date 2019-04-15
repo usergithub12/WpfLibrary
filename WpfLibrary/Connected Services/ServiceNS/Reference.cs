@@ -15,6 +15,216 @@ namespace WpfLibrary.ServiceNS {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LoginUser", Namespace="http://schemas.datacontract.org/2004/07/WcfService.Models")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(WpfLibrary.ServiceNS.User))]
+    public partial class LoginUser : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LoginField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PasswordField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Login {
+            get {
+                return this.LoginField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LoginField, value) != true)) {
+                    this.LoginField = value;
+                    this.RaisePropertyChanged("Login");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Password {
+            get {
+                return this.PasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/WcfService.Models")]
+    [System.SerializableAttribute()]
+    public partial class User : WpfLibrary.ServiceNS.LoginUser {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PasswordConfirmationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TelephoneField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Email {
+            get {
+                return this.EmailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
+                    this.EmailField = value;
+                    this.RaisePropertyChanged("Email");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PasswordConfirmation {
+            get {
+                return this.PasswordConfirmationField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordConfirmationField, value) != true)) {
+                    this.PasswordConfirmationField = value;
+                    this.RaisePropertyChanged("PasswordConfirmation");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Telephone {
+            get {
+                return this.TelephoneField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TelephoneField, value) != true)) {
+                    this.TelephoneField = value;
+                    this.RaisePropertyChanged("Telephone");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MyExceptionFault", Namespace="http://schemas.datacontract.org/2004/07/WcfService")]
+    [System.SerializableAttribute()]
+    public partial class MyExceptionFault : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MessageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool ResultField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Message {
+            get {
+                return this.MessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
+                    this.MessageField = value;
+                    this.RaisePropertyChanged("Message");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Result {
+            get {
+                return this.ResultField;
+            }
+            set {
+                if ((this.ResultField.Equals(value) != true)) {
+                    this.ResultField = value;
+                    this.RaisePropertyChanged("Result");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Book", Namespace="http://schemas.datacontract.org/2004/07/WcfService")]
     [System.SerializableAttribute()]
     public partial class Book : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -110,6 +320,13 @@ namespace WpfLibrary.ServiceNS {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceNS.IService1")]
     public interface IService1 {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetUserforValidation", ReplyAction="http://tempuri.org/IService1/GetUserforValidationResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(WpfLibrary.ServiceNS.MyExceptionFault), Action="http://tempuri.org/IService1/GetUserforValidationMyExceptionFaultFault", Name="MyExceptionFault", Namespace="http://schemas.datacontract.org/2004/07/WcfService")]
+        void GetUserforValidation(WpfLibrary.ServiceNS.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetUserforValidation", ReplyAction="http://tempuri.org/IService1/GetUserforValidationResponse")]
+        System.Threading.Tasks.Task GetUserforValidationAsync(WpfLibrary.ServiceNS.User user);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetBookfromDB", ReplyAction="http://tempuri.org/IService1/GetBookfromDBResponse")]
         void GetBookfromDB(WpfLibrary.ServiceNS.Book b);
         
@@ -121,6 +338,13 @@ namespace WpfLibrary.ServiceNS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetBooks", ReplyAction="http://tempuri.org/IService1/GetBooksResponse")]
         System.Threading.Tasks.Task<WpfLibrary.ServiceNS.Book[]> GetBooksAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetLoginUserforValidation", ReplyAction="http://tempuri.org/IService1/GetLoginUserforValidationResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(WpfLibrary.ServiceNS.MyExceptionFault), Action="http://tempuri.org/IService1/GetLoginUserforValidationMyExceptionFaultFault", Name="MyExceptionFault", Namespace="http://schemas.datacontract.org/2004/07/WcfService")]
+        void GetLoginUserforValidation(WpfLibrary.ServiceNS.LoginUser loginUser);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetLoginUserforValidation", ReplyAction="http://tempuri.org/IService1/GetLoginUserforValidationResponse")]
+        System.Threading.Tasks.Task GetLoginUserforValidationAsync(WpfLibrary.ServiceNS.LoginUser loginUser);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -150,6 +374,14 @@ namespace WpfLibrary.ServiceNS {
                 base(binding, remoteAddress) {
         }
         
+        public void GetUserforValidation(WpfLibrary.ServiceNS.User user) {
+            base.Channel.GetUserforValidation(user);
+        }
+        
+        public System.Threading.Tasks.Task GetUserforValidationAsync(WpfLibrary.ServiceNS.User user) {
+            return base.Channel.GetUserforValidationAsync(user);
+        }
+        
         public void GetBookfromDB(WpfLibrary.ServiceNS.Book b) {
             base.Channel.GetBookfromDB(b);
         }
@@ -164,6 +396,14 @@ namespace WpfLibrary.ServiceNS {
         
         public System.Threading.Tasks.Task<WpfLibrary.ServiceNS.Book[]> GetBooksAsync() {
             return base.Channel.GetBooksAsync();
+        }
+        
+        public void GetLoginUserforValidation(WpfLibrary.ServiceNS.LoginUser loginUser) {
+            base.Channel.GetLoginUserforValidation(loginUser);
+        }
+        
+        public System.Threading.Tasks.Task GetLoginUserforValidationAsync(WpfLibrary.ServiceNS.LoginUser loginUser) {
+            return base.Channel.GetLoginUserforValidationAsync(loginUser);
         }
     }
 }

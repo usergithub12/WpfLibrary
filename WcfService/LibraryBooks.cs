@@ -1,9 +1,11 @@
-namespace WcfService
-{
+
     using System;
     using System.Data.Entity;
     using System.Linq;
+using WcfService.Models;
 
+namespace WcfService
+{
     public class LibraryBooks : DbContext
     {
         // Your context has been configured to use a 'LibraryBooks' connection string from your application's 
@@ -22,6 +24,8 @@ namespace WcfService
 
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
         public virtual DbSet<Book> Books { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<LoginUser> LoginUsers { get; set; }
     }
 
     //public class MyEntity

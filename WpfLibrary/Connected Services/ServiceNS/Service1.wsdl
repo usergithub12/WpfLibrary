@@ -3,10 +3,20 @@
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:55425/Service1.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:55425/Service1.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/WcfService" />
       <xsd:import schemaLocation="http://localhost:55425/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:55425/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WcfService" />
+      <xsd:import schemaLocation="http://localhost:55425/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WcfService.Models" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IService1_GetUserforValidation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserforValidation" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetUserforValidation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserforValidationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetUserforValidation_MyExceptionFaultFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/WcfService" name="detail" element="q1:MyExceptionFault" />
+  </wsdl:message>
   <wsdl:message name="IService1_GetBookfromDB_InputMessage">
     <wsdl:part name="parameters" element="tns:GetBookfromDB" />
   </wsdl:message>
@@ -19,7 +29,21 @@
   <wsdl:message name="IService1_GetBooks_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetBooksResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_GetLoginUserforValidation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLoginUserforValidation" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetLoginUserforValidation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLoginUserforValidationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetLoginUserforValidation_MyExceptionFaultFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/WcfService" name="detail" element="q2:MyExceptionFault" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
+    <wsdl:operation name="GetUserforValidation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetUserforValidation" message="tns:IService1_GetUserforValidation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetUserforValidationResponse" message="tns:IService1_GetUserforValidation_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IService1/GetUserforValidationMyExceptionFaultFault" name="MyExceptionFaultFault" message="tns:IService1_GetUserforValidation_MyExceptionFaultFault_FaultMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetBookfromDB">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBookfromDB" message="tns:IService1_GetBookfromDB_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetBookfromDBResponse" message="tns:IService1_GetBookfromDB_OutputMessage" />
@@ -28,9 +52,26 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBooks" message="tns:IService1_GetBooks_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetBooksResponse" message="tns:IService1_GetBooks_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetLoginUserforValidation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetLoginUserforValidation" message="tns:IService1_GetLoginUserforValidation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetLoginUserforValidationResponse" message="tns:IService1_GetLoginUserforValidation_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IService1/GetLoginUserforValidationMyExceptionFaultFault" name="MyExceptionFaultFault" message="tns:IService1_GetLoginUserforValidation_MyExceptionFaultFault_FaultMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetUserforValidation">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetUserforValidation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MyExceptionFaultFault">
+        <soap:fault use="literal" name="MyExceptionFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="GetBookfromDB">
       <soap:operation soapAction="http://tempuri.org/IService1/GetBookfromDB" style="document" />
       <wsdl:input>
@@ -48,6 +89,18 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLoginUserforValidation">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetLoginUserforValidation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MyExceptionFaultFault">
+        <soap:fault use="literal" name="MyExceptionFaultFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="Service1">

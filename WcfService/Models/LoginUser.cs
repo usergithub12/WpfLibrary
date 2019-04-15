@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Web;
+using WcfService.Exceptions;
 
-namespace WcfService
+namespace WcfService.Models
 {
+   
 
+   
     [DataContract]
-    public class Book
+    public class LoginUser
     {
         [DataMember]
         public int Id { get; set; }
         [DataMember]
-        public string Author { get; set; }
+        public string Login { get; set; }
         [DataMember]
-        public string Title { get; set; }
-        [DataMember]
-        public int Pages { get; set; }
+        public string Password { get; set; }
     }
 }
