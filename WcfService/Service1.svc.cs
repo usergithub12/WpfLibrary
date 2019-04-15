@@ -16,9 +16,6 @@ namespace WcfService
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public partial class Service1 : IService1
     {
-
-       
-
         public void GetBookfromDB(Book b)
         {
             using (LibraryBooks books = new LibraryBooks())
@@ -82,23 +79,21 @@ namespace WcfService
                     ex.Description = "Htos' naplyguv, ajajaj ((((";
                     throw new FaultException<MyExceptionFault>(ex, new FaultReason(" bebebe"));
                 }
-
-
+                books.LoginUsers.Add(loginUser);
+                books.SaveChanges();
             }
+
+
         }
 
         public void GetUserforValidation(User user)
         {
-
             try
             {
-
                 if (user.Login != String.Empty && user.Login != null && !Regex.IsMatch(user.Login, @"\p{IsCyrillic}"))
                 {
                     throw new EmptyCyrilicLoginException();
                 }
-
-                
             }
             catch (EmptyCyrilicLoginException err)
             {
@@ -110,8 +105,6 @@ namespace WcfService
                 throw new FaultException<MyExceptionFault>(ex, new FaultReason(" bebebe"));
             }
 
-
-
             try
             {
 
@@ -119,8 +112,6 @@ namespace WcfService
                 {
                     throw new PasswordConfirmationException();
                 }
-
-
             }
             catch (PasswordConfirmationException err)
             {
@@ -131,23 +122,12 @@ namespace WcfService
 
                 throw new FaultException<MyExceptionFault>(ex, new FaultReason(" bebebe"));
             }
-
-
-
-
-
-
-
-      
-
             try
             {
-
                 if (user.Password.Length >= 6)
                 {
                     throw new PasswordIndexOutOfRangeException();
                 }
-
             }
             catch (PasswordIndexOutOfRangeException err)
             {
@@ -159,22 +139,12 @@ namespace WcfService
                 throw new FaultException<MyExceptionFault>(ex, new FaultReason(" bebebe"));
             }
 
-
-
-
-
-
-
-          
-
             try
             {
-
                 if (Regex.IsMatch(user.Password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"))
                 {
                     throw new PasswordSpecificCharactersException();
                 }
-
             }
             catch (PasswordSpecificCharactersException err)
             {
@@ -186,18 +156,13 @@ namespace WcfService
                 throw new FaultException<MyExceptionFault>(ex, new FaultReason(" bebebe"));
             }
 
-
-        
-
             try
             {
-
                 if (user.Email != null)
                 {
                     MailAddress m = new MailAddress(user.Email);
                     throw new EmailFormatException();
                 }
-
             }
             catch (EmailFormatException err)
             {
@@ -209,15 +174,8 @@ namespace WcfService
                 throw new FaultException<MyExceptionFault>(ex, new FaultReason(" bebebe"));
             }
 
-
-
-
-           
-
-
             try
             {
-
                 if (string.IsNullOrEmpty(user.Telephone))
                 {
                     var r = new Regex(@"^\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$");
@@ -234,6 +192,11 @@ namespace WcfService
                 ex.Description = "Htos' naplyguv, ajajaj ((((";
 
                 throw new FaultException<MyExceptionFault>(ex, new FaultReason(" bebebe"));
+            }
+            using (LibraryBooks books = new LibraryBooks())
+            {
+                books.Users.Add(user);
+                books.SaveChanges();
             }
         }
     }

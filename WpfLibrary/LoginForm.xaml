@@ -13,7 +13,7 @@
             <Label>Password</Label>
             <TextBox Name="tb_password"></TextBox>
             <Button Name="btn_sign_in" Click="Btn_sign_in_Click">Sign In</Button>
-            <Button Name="btn_sign_up">Sign Up</Button>
+            <Button Name="btn_sign_up" Click="Btn_sign_up_Click">Sign Up</Button>
         </StackPanel>
 
     </Grid>

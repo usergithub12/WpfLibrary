@@ -28,30 +28,52 @@ namespace WpfLibrary
 
         private void Btn_confirm_Click(object sender, RoutedEventArgs e)
         {
-
-            User user = new User();
-      
-
-            user.Telephone = tb_telephone.Text;
-            user.Password =  tb_password.Text;
-            user.PasswordConfirmation = tb_conf_password.Text;
-            user.Login =     tb_login.Text;
-            user.Email =     tb_email.Text;
-
-
             Service1Client client = new Service1Client();
             try
             {
+               
+                User user = new User();
+                user.Telephone = tb_telephone.Text;
+                user.Password = tb_password.Text;
+                user.PasswordConfirmation = tb_conf_password.Text;
+                user.Login = tb_login.Text;
+                user.Email = tb_email.Text;
 
                 client.GetUserforValidation(user);
             }
-            catch (FaultException err)
+          
+            catch (FaultException<MyExceptionFault> err)
             {
-               MessageBox.Show($"M - {err.Message}\nR - {err.Reason}\nS - {err.Source}");
-              //  Console.WriteLine($"M - {err.Detail.Message}\nR - {err.Detail.Result}\nS - {err.Detail.Description}");
+                MessageBox.Show($"M - {err.Message}\nR - {err.Reason}\nS - {err.Source}");
+               // Console.WriteLine($"M - {err.Detail.Message}\nR - {err.Detail.Result}\nS - {err.Detail.Description}");
             }
-         
-            
+            catch (FaultException fe)
+            {
+                Console.WriteLine($"Halepa - {fe}");
+            }
+            catch (NullReferenceException err)
+            {
+                Console.WriteLine("Htos ne vudiluv pamjati");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Useless block");
+
+            }
+           
+            foreach (var item in st_checkboxes.Children.OfType<CheckBox>())
+            {
+                item.IsChecked = true;
+            }
+
+
+          
+                LoginForm loginForm = new LoginForm();
+
+                loginForm.ShowDialog();
+           
+          
+              //  this.Close();
         }
 
         private void Btn_reset_Click(object sender, RoutedEventArgs e)

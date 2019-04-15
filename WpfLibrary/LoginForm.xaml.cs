@@ -59,6 +59,15 @@ namespace WpfLibrary
 
             }
 
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.ShowDialog();
+           
+        }
+
+        private void Btn_sign_up_Click(object sender, RoutedEventArgs e)
+        {
+            Registration registration = new Registration();
+            registration.ShowDialog();
         }
     }
 }
