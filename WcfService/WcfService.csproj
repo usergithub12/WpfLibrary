@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Book.cs" />
+    <Compile Include="ExceptionsFault\BookAllFieldNotEmptyExceptionFault.cs" />
     <Compile Include="ExceptionsFault\EmailFormatExceptionFault.cs" />
     <Compile Include="ExceptionsFault\EmptyCyrilicLoginExceptionFault.cs" />
     <Compile Include="ExceptionsFault\PasswordConfirmationExceptionFault.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="ExceptionsFault\PasswordIndexOutOfRangeExceptionFault.cs" />
     <Compile Include="ExceptionsFault\PasswordSpecificCharactersExceptionFault.cs" />
     <Compile Include="ExceptionsFault\PhoneFormatExceptionFault.cs" />
+    <Compile Include="Exceptions\BookAllFieldNotEmptyException.cs" />
     <Compile Include="Exceptions\EmailFormatException.cs" />
     <Compile Include="Exceptions\EmptyCyrilicLoginException.cs" />
     <Compile Include="Exceptions\PasswordConfirmationException.cs" />

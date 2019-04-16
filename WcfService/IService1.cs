@@ -25,6 +25,7 @@ namespace WcfService
         void GetUserforValidation(User user);
 
         [OperationContract]
+        [FaultContract(typeof(BookAllFieldNotEmptyExceptionFault))]
         void GetBookfromDB(Book b);
 
         [OperationContract]

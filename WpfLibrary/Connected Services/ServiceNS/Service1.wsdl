@@ -39,6 +39,9 @@
   <wsdl:message name="IService1_GetBookfromDB_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetBookfromDBResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_GetBookfromDB_BookAllFieldNotEmptyExceptionFaultFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/WcfService.ExceptionsFault" name="detail" element="q7:BookAllFieldNotEmptyExceptionFault" />
+  </wsdl:message>
   <wsdl:message name="IService1_GetBooks_InputMessage">
     <wsdl:part name="parameters" element="tns:GetBooks" />
   </wsdl:message>
@@ -52,10 +55,10 @@
     <wsdl:part name="parameters" element="tns:GetLoginUserforValidationResponse" />
   </wsdl:message>
   <wsdl:message name="IService1_GetLoginUserforValidation_MyExceptionFaultFault_FaultMessage">
-    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/WcfService" name="detail" element="q7:MyExceptionFault" />
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/WcfService" name="detail" element="q8:MyExceptionFault" />
   </wsdl:message>
   <wsdl:message name="IService1_GetLoginUserforValidation_PasswordEqualsInDataBaseExceptionFaultFault_FaultMessage">
-    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/WcfService.ExceptionsFault" name="detail" element="q8:PasswordEqualsInDataBaseExceptionFault" />
+    <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/WcfService.ExceptionsFault" name="detail" element="q9:PasswordEqualsInDataBaseExceptionFault" />
   </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="GetUserforValidation">
@@ -71,6 +74,7 @@
     <wsdl:operation name="GetBookfromDB">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBookfromDB" message="tns:IService1_GetBookfromDB_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetBookfromDBResponse" message="tns:IService1_GetBookfromDB_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IService1/GetBookfromDBBookAllFieldNotEmptyExceptionFaultFault" name="BookAllFieldNotEmptyExceptionFaultFault" message="tns:IService1_GetBookfromDB_BookAllFieldNotEmptyExceptionFaultFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetBooks">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetBooks" message="tns:IService1_GetBooks_InputMessage" />
@@ -120,6 +124,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="BookAllFieldNotEmptyExceptionFaultFault">
+        <soap:fault use="literal" name="BookAllFieldNotEmptyExceptionFaultFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="GetBooks">
       <soap:operation soapAction="http://tempuri.org/IService1/GetBooks" style="document" />

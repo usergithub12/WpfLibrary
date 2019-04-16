@@ -19,6 +19,24 @@ namespace WcfService
     {
         public void GetBookfromDB(Book b)
         {
+
+            try
+            {
+                if (b.Author==String.Empty||b.Pages == null || b.Pages == 0 || b.Title==String.Empty||b.Id==0)
+                {
+                    throw new BookAllFieldNotEmptyException();
+                }
+            }
+            catch (BookAllFieldNotEmptyException err)
+            {
+                BookAllFieldNotEmptyExceptionFault ex = new BookAllFieldNotEmptyExceptionFault();
+                ex.Result = false;
+                ex.Message = err.Message;
+                ex.Description = "Htos' naplyguv, ajajaj ((((";
+                throw new FaultException<BookAllFieldNotEmptyExceptionFault>(ex, new FaultReason(" field is empty"));
+            }
+
+
             using (LibraryBooks books = new LibraryBooks())
             {
                 books.Books.Add(b);
