@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using WcfService.ExceptionsFault;
 using WcfService.Models;
 
 namespace WcfService
@@ -15,7 +16,12 @@ namespace WcfService
     public interface IService1
     {
         [OperationContract]
-        [FaultContract(typeof(MyExceptionFault))]
+        [FaultContract(typeof(EmailFormatExceptionFault))]
+        [FaultContract(typeof(EmptyCyrilicLoginExceptionFault))]
+        [FaultContract(typeof(PasswordConfirmationExceptionFault))]
+        [FaultContract(typeof(PasswordIndexOutOfRangeExceptionFault))]
+        [FaultContract(typeof(PasswordSpecificCharactersExceptionFault))]
+        [FaultContract(typeof(PhoneFormatExceptionFault))]
         void GetUserforValidation(User user);
 
         [OperationContract]
@@ -26,7 +32,8 @@ namespace WcfService
 
         [OperationContract]
         [FaultContract(typeof(MyExceptionFault))]
-        void GetLoginUserforValidation(LoginUser loginUser);
+        [FaultContract(typeof(PasswordEqualsInDataBaseExceptionFault))]
+        void GetLoginUserforValidation(string login, string password);
 
 
        

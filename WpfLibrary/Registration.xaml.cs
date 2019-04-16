@@ -39,25 +39,58 @@ namespace WpfLibrary
                 user.Login = tb_login.Text;
                 user.Email = tb_email.Text;
 
+             
                 client.GetUserforValidation(user);
+               
+                //LoginForm loginForm = new LoginForm();
+
+                //loginForm.ShowDialog();
+                //user.Login = loginForm.tb_login.Text;
+                //user.Password = loginForm.tb_password.Text;
             }
           
-            catch (FaultException<MyExceptionFault> err)
+            catch (FaultException<EmptyCyrilicLoginExceptionFault> err)
             {
                 MessageBox.Show($"M - {err.Message}\nR - {err.Reason}\nS - {err.Source}");
-               // Console.WriteLine($"M - {err.Detail.Message}\nR - {err.Detail.Result}\nS - {err.Detail.Description}");
+                MessageBox.Show($"M - {err.Detail.Message}\nR - {err.Detail.Result}\nS - {err.Detail.Description}");
             }
+            catch (FaultException<EmailFormatExceptionFault> err)
+            {
+                MessageBox.Show($"M - {err.Message}\nR - {err.Reason}\nS - {err.Source}");
+                MessageBox.Show($"M - {err.Detail.Message}\nR - {err.Detail.Result}\nS - {err.Detail.Description}");
+            }
+            catch (FaultException<PasswordConfirmationExceptionFault> err)
+            {
+                MessageBox.Show($"M - {err.Message}\nR - {err.Reason}\nS - {err.Source}");
+                MessageBox.Show($"M - {err.Detail.Message}\nR - {err.Detail.Result}\nS - {err.Detail.Description}");
+            }
+            catch (FaultException<PasswordIndexOutOfRangeExceptionFault> err)
+            {
+                MessageBox.Show($"M - {err.Message}\nR - {err.Reason}\nS - {err.Source}");
+                MessageBox.Show($"M - {err.Detail.Message}\nR - {err.Detail.Result}\nS - {err.Detail.Description}");
+            }
+            catch (FaultException<PasswordSpecificCharactersExceptionFault> err)
+            {
+                MessageBox.Show($"M - {err.Message}\nR - {err.Reason}\nS - {err.Source}");
+                MessageBox.Show($"M - {err.Detail.Message}\nR - {err.Detail.Result}\nS - {err.Detail.Description}");
+            }
+            catch (FaultException<PhoneFormatExceptionFault> err)
+            {
+                MessageBox.Show($"M - {err.Message}\nR - {err.Reason}\nS - {err.Source}");
+                MessageBox.Show($"M - {err.Detail.Message}\nR - {err.Detail.Result}\nS - {err.Detail.Description}");
+            }
+
             catch (FaultException fe)
             {
-                Console.WriteLine($"Halepa - {fe}");
+                MessageBox.Show($"Halepa - {fe}");
             }
             catch (NullReferenceException err)
             {
-                Console.WriteLine("Htos ne vudiluv pamjati");
+                MessageBox.Show("Htos ne vudiluv pamjati");
             }
             catch (Exception)
             {
-                Console.WriteLine("Useless block");
+                MessageBox.Show("Useless block");
 
             }
            
@@ -68,9 +101,8 @@ namespace WpfLibrary
 
 
           
-                LoginForm loginForm = new LoginForm();
-
-                loginForm.ShowDialog();
+            
+            
            
           
               //  this.Close();

@@ -25,7 +25,7 @@ namespace WcfService
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
         public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<LoginUser> LoginUsers { get; set; }
+      
     }
 
     //public class MyEntity

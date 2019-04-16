@@ -8,9 +8,14 @@ namespace WcfService.Models
 {
 
     [DataContract]
-    public class User: LoginUser
+    public class User
     {
-       
+        [DataMember]
+        public int Id { get; set; }
+        [DataMember]
+        public string Login { get; set; }
+        [DataMember]
+        public string Password { get; set; }
         [DataMember]
         public string PasswordConfirmation { get; set; }
         [DataMember]

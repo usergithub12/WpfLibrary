@@ -30,32 +30,33 @@ namespace WpfLibrary
 
         private void Btn_sign_in_Click(object sender, RoutedEventArgs e)
         {
-
-
             try
             {
                 Service1Client service1Client = new Service1Client();
-                LoginUser loginUser = new LoginUser();
-                loginUser.Login = tb_login.Text;
-                loginUser.Password = tb_password.Text;
-                service1Client.GetLoginUserforValidation(loginUser);
+               
+                service1Client.GetLoginUserforValidation(tb_login.Text,tb_password.Text);
             }
             catch (FaultException<MyExceptionFault> err)
             {
-                Console.WriteLine($"M - {err.Message}\nR - {err.Reason}\nS - {err.Source}");
-                Console.WriteLine($"M - {err.Detail.Message}\nR - {err.Detail.Result}\nS - {err.Detail.Description}");
+                MessageBox.Show($"M - {err.Message}\nR - {err.Reason}\nS - {err.Source}");
+                MessageBox.Show($"M - {err.Detail.Message}\nR - {err.Detail.Result}\nS - {err.Detail.Description}");
+            }
+            catch (FaultException<PasswordEqualsInDataBaseExceptionFault>err)
+            {
+                MessageBox.Show($"M - {err.Message}\nR - {err.Reason}\nS - {err.Source}");
+                MessageBox.Show($"M - {err.Detail.Message}\nR - {err.Detail.Result}\nS - {err.Detail.Description}");
             }
             catch (FaultException fe)
             {
-                Console.WriteLine($"Halepa - {fe}");
+                MessageBox.Show($"Halepa - {fe}");
             }
             catch (NullReferenceException err)
             {
-                Console.WriteLine("Htos ne vudiluv pamjati");
+               MessageBox.Show("Htos ne vudiluv pamjati");
             }
             catch (Exception)
             {
-                Console.WriteLine("Useless block");
+                MessageBox.Show("Useless block");
 
             }
 

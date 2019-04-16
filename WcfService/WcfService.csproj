@@ -74,6 +74,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Book.cs" />
+    <Compile Include="ExceptionsFault\EmailFormatExceptionFault.cs" />
+    <Compile Include="ExceptionsFault\EmptyCyrilicLoginExceptionFault.cs" />
+    <Compile Include="ExceptionsFault\PasswordConfirmationExceptionFault.cs" />
+    <Compile Include="ExceptionsFault\PasswordEqualsInDataBaseExceptionFault.cs" />
+    <Compile Include="ExceptionsFault\PasswordIndexOutOfRangeExceptionFault.cs" />
+    <Compile Include="ExceptionsFault\PasswordSpecificCharactersExceptionFault.cs" />
+    <Compile Include="ExceptionsFault\PhoneFormatExceptionFault.cs" />
     <Compile Include="Exceptions\EmailFormatException.cs" />
     <Compile Include="Exceptions\EmptyCyrilicLoginException.cs" />
     <Compile Include="Exceptions\PasswordConfirmationException.cs" />
@@ -82,9 +89,8 @@
     <Compile Include="Exceptions\PasswordSpecificCharactersException.cs" />
     <Compile Include="Exceptions\PhoneFormatException.cs" />
     <Compile Include="LibraryBooks.cs" />
-    <Compile Include="Models\LoginUser.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Exceptions\MyException.cs" />
+    <Compile Include="ExceptionsFault\MyException.cs" />
     <Compile Include="Service1.svc.cs">
       <DependentUpon>Service1.svc</DependentUpon>
     </Compile>

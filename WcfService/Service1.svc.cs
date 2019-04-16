@@ -8,6 +8,7 @@ using System.ServiceModel.Web;
 using System.Text;
 using System.Text.RegularExpressions;
 using WcfService.Exceptions;
+using WcfService.ExceptionsFault;
 using WcfService.Models;
 
 namespace WcfService
@@ -34,18 +35,16 @@ namespace WcfService
 
         }
 
-        public void GetLoginUserforValidation(LoginUser loginUser)
+        public void GetLoginUserforValidation(string login, string password)
         {
             using (LibraryBooks books = new LibraryBooks())
             {
                 try
                 {
-                    foreach (var item in books.LoginUsers)
+                    var t = books.Users.FirstOrDefault(u => u.Login == login);
+                    if(t==null)
                     {
-                        if (item.Login == loginUser.Login)
-                        {
-                            throw new UserExistsInDatabaseException();
-                        }
+                        throw new UserExistsInDatabaseException();
                     }
                 }
                 catch (UserExistsInDatabaseException err)
@@ -54,14 +53,14 @@ namespace WcfService
                     ex.Result = false;
                     ex.Message = err.Message;
                     ex.Description = "Htos' naplyguv, ajajaj ((((";
-                    throw new FaultException<MyExceptionFault>(ex, new FaultReason(" bebebe"));
+                    throw new FaultException<MyExceptionFault>(ex, new FaultReason(" user not exists in database"));
                 }
 
                 try
                 {
-                    foreach (var item in books.LoginUsers)
+                    foreach (var item in books.Users)
                     {
-                        if (item.Password == loginUser.Password)
+                        if (item.Password == password)
                         {
 
                             throw new PasswordEqualsInDataBaseException();
@@ -73,14 +72,13 @@ namespace WcfService
                 catch (PasswordEqualsInDataBaseException err)
                 {
 
-                    MyExceptionFault ex = new MyExceptionFault();
+                    PasswordEqualsInDataBaseExceptionFault ex = new PasswordEqualsInDataBaseExceptionFault();
                     ex.Result = false;
                     ex.Message = err.Message;
                     ex.Description = "Htos' naplyguv, ajajaj ((((";
-                    throw new FaultException<MyExceptionFault>(ex, new FaultReason(" bebebe"));
+                    throw new FaultException<PasswordEqualsInDataBaseExceptionFault>(ex, new FaultReason(" passwords not equals"));
                 }
-                books.LoginUsers.Add(loginUser);
-                books.SaveChanges();
+               
             }
 
 
@@ -90,38 +88,39 @@ namespace WcfService
         {
             try
             {
-                if (user.Login != String.Empty && user.Login != null && !Regex.IsMatch(user.Login, @"\p{IsCyrillic}"))
+                if (user.Login == String.Empty || user.Login == null || Regex.IsMatch(user.Login, @"\p{IsCyrillic}"))
                 {
                     throw new EmptyCyrilicLoginException();
                 }
             }
             catch (EmptyCyrilicLoginException err)
             {
-                MyExceptionFault ex = new MyExceptionFault();
+                EmptyCyrilicLoginExceptionFault ex = new EmptyCyrilicLoginExceptionFault();
                 ex.Result = false;
                 ex.Message = err.Message;
                 ex.Description = "Htos' naplyguv, ajajaj ((((";
 
-                throw new FaultException<MyExceptionFault>(ex, new FaultReason(" bebebe"));
+                throw new FaultException<EmptyCyrilicLoginExceptionFault>(ex, new FaultReason(" field empty or has cyrilyc characters"));
             }
 
             try
             {
 
-                if (user.Password == user.PasswordConfirmation)
+                if (user.Password != user.PasswordConfirmation)
                 {
                     throw new PasswordConfirmationException();
                 }
             }
             catch (PasswordConfirmationException err)
             {
-                MyExceptionFault ex = new MyExceptionFault();
+                PasswordConfirmationExceptionFault ex = new PasswordConfirmationExceptionFault();
                 ex.Result = false;
                 ex.Message = err.Message;
                 ex.Description = "Htos' naplyguv, ajajaj ((((";
 
-                throw new FaultException<MyExceptionFault>(ex, new FaultReason(" bebebe"));
+                throw new FaultException<PasswordConfirmationExceptionFault>(ex, new FaultReason(" pass!=pass conf"));
             }
+
             try
             {
                 if (user.Password.Length >= 6)
@@ -131,12 +130,12 @@ namespace WcfService
             }
             catch (PasswordIndexOutOfRangeException err)
             {
-                MyExceptionFault ex = new MyExceptionFault();
+                PasswordIndexOutOfRangeExceptionFault ex = new PasswordIndexOutOfRangeExceptionFault();
                 ex.Result = false;
                 ex.Message = err.Message;
                 ex.Description = "Htos' naplyguv, ajajaj ((((";
 
-                throw new FaultException<MyExceptionFault>(ex, new FaultReason(" bebebe"));
+                throw new FaultException<PasswordIndexOutOfRangeExceptionFault>(ex, new FaultReason(" over 6 characters in pass"));
             }
 
             try
@@ -148,17 +147,17 @@ namespace WcfService
             }
             catch (PasswordSpecificCharactersException err)
             {
-                MyExceptionFault ex = new MyExceptionFault();
+                PasswordSpecificCharactersExceptionFault ex = new PasswordSpecificCharactersExceptionFault();
                 ex.Result = false;
                 ex.Message = err.Message;
                 ex.Description = "Htos' naplyguv, ajajaj ((((";
 
-                throw new FaultException<MyExceptionFault>(ex, new FaultReason(" bebebe"));
+                throw new FaultException<PasswordSpecificCharactersExceptionFault>(ex, new FaultReason(" specific characters in pass"));
             }
 
             try
             {
-                if (user.Email != null)
+                if (user.Email == null||String.IsNullOrEmpty(user.Email))
                 {
                     MailAddress m = new MailAddress(user.Email);
                     throw new EmailFormatException();
@@ -166,17 +165,17 @@ namespace WcfService
             }
             catch (EmailFormatException err)
             {
-                MyExceptionFault ex = new MyExceptionFault();
+                EmailFormatExceptionFault ex = new EmailFormatExceptionFault();
                 ex.Result = false;
                 ex.Message = err.Message;
                 ex.Description = "Htos' naplyguv, ajajaj ((((";
 
-                throw new FaultException<MyExceptionFault>(ex, new FaultReason(" bebebe"));
+                throw new FaultException<EmailFormatExceptionFault>(ex, new FaultReason(" wrond email format"));
             }
 
             try
             {
-                if (string.IsNullOrEmpty(user.Telephone))
+                if (String.IsNullOrEmpty(user.Telephone))
                 {
                     var r = new Regex(@"^\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$");
                     r.IsMatch(user.Telephone);
@@ -186,12 +185,12 @@ namespace WcfService
             }
             catch (PhoneFormatException err)
             {
-                MyExceptionFault ex = new MyExceptionFault();
+                PhoneFormatExceptionFault ex = new PhoneFormatExceptionFault();
                 ex.Result = false;
                 ex.Message = err.Message;
                 ex.Description = "Htos' naplyguv, ajajaj ((((";
 
-                throw new FaultException<MyExceptionFault>(ex, new FaultReason(" bebebe"));
+                throw new FaultException<PhoneFormatExceptionFault>(ex, new FaultReason(" wrong phone format"));
             }
             using (LibraryBooks books = new LibraryBooks())
             {

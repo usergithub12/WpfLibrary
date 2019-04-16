@@ -120,6 +120,9 @@
     <None Include="Connected Services\ServiceNS\Service13.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\ServiceNS\Service14.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ServiceNS\WpfLibrary.ServiceNS.Book.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
